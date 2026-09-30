@@ -33,4 +33,14 @@ Thumbs.db
 .env.*
 !.env.example
 
+# Markdown files
+*.md
+
+# AI / Agent skills
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
+
+# Prisma generated
 /generated/prisma

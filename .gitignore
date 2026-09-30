@@ -46,3 +46,16 @@ coverage/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Markdown files
+*.md
+!README.md
+
+# AI / Agent skills
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
+
+# Prisma generated
+/generated/prisma
