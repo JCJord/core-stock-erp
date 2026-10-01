@@ -5,17 +5,17 @@ WORKDIR /app
 # Necessário para o Prisma funcionar no Alpine Linux
 RUN apk add --no-cache openssl libc6-compat
 
-# Copia os arquivos de manifesto de pacotes
+# Copia manifestos e schema do Prisma ANTES do npm install
 COPY package*.json ./
+COPY prisma ./prisma/
+COPY prisma7.config.ts ./
 
-# Instala dependências dentro do container
+# Instala todas as dependências e roda prisma generate automaticamente via postinstall
 RUN npm install
 
-# Copia o restante do código
+# Copia o restante do código da aplicação
 COPY . .
 
-# Expõe a porta padrão do NestJS
 EXPOSE 3000
 
-# Executa em modo watch (recarregamento automático em tempo real)
-CMD ["npm", "run", "start:dev"]
+CMD ["sh", "-c", "npx prisma generate && npm run start:dev"]
